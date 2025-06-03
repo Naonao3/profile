@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const videoList = [
   "/videos/background3.mp4",
-  "/videos/background.mp4",
   "/videos/background2.mp4",
   "/videos/background6.mp4",
   "/videos/background5.mp4",
