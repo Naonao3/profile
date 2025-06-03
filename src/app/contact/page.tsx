@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-4xl font-bold text-gray-900 text-center mb-12">
-            お問い合わせ
+            Contact
           </h1>
           <div className="bg-white rounded-lg shadow-lg p-8">
             <form className="space-y-6">
@@ -15,7 +15,7 @@ export default function Contact() {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  お名前
+                  Name
                 </label>
                 <input
                   type="text"
@@ -31,7 +31,7 @@ export default function Contact() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  メールアドレス
+                  Email
                 </label>
                 <input
                   type="email"
@@ -47,7 +47,7 @@ export default function Contact() {
                   htmlFor="subject"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  件名
+                  Subject
                 </label>
                 <input
                   type="text"
@@ -63,7 +63,7 @@ export default function Contact() {
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  メッセージ
+                  Message
                 </label>
                 <textarea
                   id="message"
@@ -79,27 +79,27 @@ export default function Contact() {
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors"
                 >
-                  送信する
+                  Send
                 </button>
               </div>
             </form>
 
             <div className="mt-8 pt-8 border-t border-gray-200">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                その他の連絡方法
+                Other Contact Methods
               </h2>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  <span className="font-medium">メール：</span>
+                  <span className="font-medium">Email:</span>
                   contact@example.com
                 </p>
                 <p className="text-gray-600">
-                  <span className="font-medium">電話：</span>
+                  <span className="font-medium">Phone:</span>
                   03-1234-5678
                 </p>
                 <p className="text-gray-600">
-                  <span className="font-medium">所在地：</span>
-                  東京都渋谷区渋谷1-1-1
+                  <span className="font-medium">Location:</span>
+                  1-1-1 Shibuya, Shibuya-ku, Tokyo
                 </p>
               </div>
             </div>

@@ -11,7 +11,7 @@ export default function Profile() {
               <div className="relative h-48 w-48 md:h-64 md:w-64">
                 <Image
                   src="/profile-image.jpg"
-                  alt="プロフィール画像"
+                  alt="Profile Image"
                   fill
                   className="object-cover"
                 />
@@ -19,29 +19,23 @@ export default function Profile() {
             </div>
             <div className="p-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                山田 太郎
+                Taro Yamada
               </h1>
               <p className="text-gray-600 mb-4">
-                フロントエンドエンジニア / UIデザイナー
+                Frontend Engineer / UI Designer
               </p>
               <div className="mt-4">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                  自己紹介
-                </h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">About Me</h2>
                 <p className="text-gray-600">
-                  5年以上のフロントエンド開発経験を持ち、React、Next.js、TypeScriptを中心に
-                  モダンなWebアプリケーションの開発に携わっています。
-                  ユーザー体験を重視したUIデザインと、パフォーマンスを考慮した実装を心がけています。
+                  With over 5 years of experience in frontend development, I specialize in building modern web applications mainly using React, Next.js, and TypeScript. I focus on user experience and performance-oriented implementation.
                 </p>
               </div>
               <div className="mt-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                  趣味
-                </h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">Hobbies</h2>
                 <ul className="list-disc list-inside text-gray-600">
-                  <li>プログラミング</li>
-                  <li>写真撮影</li>
-                  <li>旅行</li>
+                  <li>Programming</li>
+                  <li>Photography</li>
+                  <li>Traveling</li>
                 </ul>
               </div>
             </div>

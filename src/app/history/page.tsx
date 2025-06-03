@@ -4,32 +4,32 @@ export default function History() {
   const experiences = [
     {
       year: "2023",
-      title: "シニアフロントエンドエンジニア",
-      company: "株式会社テックイノベーション",
+      title: "Senior Frontend Engineer",
+      company: "Tech Innovation Inc.",
       description: [
-        "大規模ECサイトのフロントエンド開発リード",
-        "パフォーマンス最適化によるページロード時間50%削減",
-        "チームメンバーのメンタリングと技術指導",
+        "Led frontend development for a large-scale e-commerce site",
+        "Reduced page load time by 50% through performance optimization",
+        "Mentored and provided technical guidance to team members",
       ],
     },
     {
       year: "2021",
-      title: "フロントエンドエンジニア",
-      company: "株式会社ウェブクリエイション",
+      title: "Frontend Engineer",
+      company: "Web Creation Inc.",
       description: [
-        "React/Next.jsを使用したWebアプリケーション開発",
-        "UI/UXデザインの改善提案と実装",
-        "CI/CDパイプラインの構築と運用",
+        "Developed web applications using React/Next.js",
+        "Proposed and implemented UI/UX improvements",
+        "Built and operated CI/CD pipelines",
       ],
     },
     {
       year: "2019",
-      title: "Webデザイナー",
-      company: "株式会社デジタルクリエイター",
+      title: "Web Designer",
+      company: "Digital Creator Inc.",
       description: [
-        "コーポレートサイトのデザインと実装",
-        "レスポンシブデザインの実装",
-        "アクセシビリティ対応",
+        "Designed and implemented corporate websites",
+        "Implemented responsive design",
+        "Ensured accessibility compliance",
       ],
     },
   ];
@@ -38,7 +38,7 @@ export default function History() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-6">
         <h1 className="text-4xl font-bold text-gray-900 text-center mb-12">
-          経歴
+          Career History
         </h1>
         <div className="max-w-3xl mx-auto">
           {experiences.map((exp, index) => (

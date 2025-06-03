@@ -3,7 +3,7 @@ import React from "react";
 export default function Skills() {
   const skills = [
     {
-      category: "フロントエンド",
+      category: "Frontend",
       items: [
         { name: "React", level: 90 },
         { name: "Next.js", level: 85 },
@@ -13,7 +13,7 @@ export default function Skills() {
       ],
     },
     {
-      category: "バックエンド",
+      category: "Backend",
       items: [
         { name: "Node.js", level: 75 },
         { name: "Express", level: 70 },
@@ -22,7 +22,7 @@ export default function Skills() {
       ],
     },
     {
-      category: "ツール・その他",
+      category: "Tools & Others",
       items: [
         { name: "Git", level: 85 },
         { name: "Docker", level: 70 },
@@ -36,7 +36,7 @@ export default function Skills() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-6">
         <h1 className="text-4xl font-bold text-gray-900 text-center mb-12">
-          スキルセット
+          Skill Set
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((category) => (

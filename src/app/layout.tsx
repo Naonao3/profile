@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
-import LoadingScreen from "@/components/LoadingScreen";
-import Layout from "@/components/Layout";
+import LoadingScreen from "@/app/components/LoadingScreen";
+import Layout from "@/app/components/Layout";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
