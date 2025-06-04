@@ -1,16 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-
-interface Card {
-    suit: string;
-    value: string;
-    numericValue: number;
-}
-
-const suits = ["♠", "♥", "♦", "♣"];
-const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
 const games = [
     {
@@ -19,11 +10,11 @@ const games = [
         description: "Classic card game. Aim for 21 and beat the dealer.",
         image: "/images/blackjack.png",
     },
-    // 今後追加するゲームのテンプレート
+    // Future games template
     // {
     //   id: "poker",
-    //   title: "ポーカー",
-    //   description: "戦略性の高い人気カードゲーム。",
+    //   title: "Poker",
+    //   description: "A strategic and popular card game.",
     //   image: "/images/poker.jpg",
     // },
 ];
@@ -44,7 +35,7 @@ const GameListPage = () => {
                             className="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                         >
                             <div className="aspect-w-16 aspect-h-9 bg-gray-200">
-                                {/* 画像が用意できたら表示 */}
+                                {/* If you have an image, display it here */}
                                 {/* <img
                   src={game.image}
                   alt={game.title}

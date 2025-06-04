@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -129,8 +129,8 @@ const BlackjackPage = () => {
     const stand = async () => {
         if (isAnimating) return;
         setIsAnimating(true);
-        let newDealerHand = [...dealerHand];
-        let newDeck = [...deck];
+        const newDealerHand = [...dealerHand];
+        const newDeck = [...deck];
         let tempDealerScore = dealerScore;
         while (tempDealerScore < 17 && newDeck.length > 0) {
             const newCard = newDeck.pop()!;
@@ -173,9 +173,9 @@ const BlackjackPage = () => {
     return (
         <div className="h-[85vh] bg-green-800 flex flex-col justify-between items-center">
             <div className="w-full flex flex-col flex-1 justify-between items-center max-w-sm mx-auto py-1">
-                {/* Dealer's Hand */}
+                {/* Dealer&apos;s Hand */}
                 <div className="flex flex-col items-center mt-1">
-                    <h2 className="text-xl md:text-3xl text-white mb-0.5 md:mb-1 font-bold">Dealer's Hand</h2>
+                    <h2 className="text-xl md:text-3xl text-white mb-0.5 md:mb-1 font-bold">Dealer&apos;s Hand</h2>
                     <div className="flex space-x-3 md:space-x-5 mb-0.5 md:mb-1">
                         {dealerHand.map((card, index) => (
                             <div
@@ -220,9 +220,9 @@ const BlackjackPage = () => {
                     </AnimatePresence>
                 </div>
 
-                {/* Player's Hand */}
+                {/* Player&apos;s Hand */}
                 <div className="flex flex-col items-center mb-0.5 md:mb-1">
-                    <h2 className="text-xl md:text-3xl text-white mb-0.5 md:mb-1 font-bold">Player's Hand</h2>
+                    <h2 className="text-xl md:text-3xl text-white mb-0.5 md:mb-1 font-bold">Player&apos;s Hand</h2>
                     <div className="flex space-x-3 md:space-x-5 mb-0.5 md:mb-1">
                         {playerHand.map((card, index) => (
                             <div
