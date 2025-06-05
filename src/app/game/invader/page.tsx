@@ -295,7 +295,7 @@ const SpaceInvader = () => {
             );
 
             // 敵の弾発射（ランダムな敵が一定確率で発射）
-            if (Math.random() < 0.08 && invaders.length > 0) {
+            if (Math.random() < 0.04 && invaders.length > 0) {
                 const shooters = invaders.filter(inv =>
                     !invaders.some(other =>
                         other.x === inv.x && other.y > inv.y && other !== inv
@@ -377,8 +377,19 @@ const SpaceInvader = () => {
             if (addScore > 0) setScore(s => s + addScore);
 
             // 敵全滅で祝福
-            if (newInvaders.length === 0) {
+            if (newInvaders.length === 0 && !celebration) {
                 setCelebration(true);
+                // 紙吹雪を即生成
+                const colors = ['#ff69b4', '#ffd700', '#00bfff', '#7fff00', '#ff6347', '#ffffff'];
+                const confettiArr = Array.from({ length: 100 }, () => ({
+                    x: Math.random() * canvasSize.width,
+                    y: Math.random() * -canvasSize.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    dx: (Math.random() - 0.5) * 2,
+                    dy: 2 + Math.random() * 2,
+                    size: 6 + Math.random() * 8,
+                }));
+                setConfetti(confettiArr);
                 clearInterval(gameLoop);
             }
 
@@ -410,33 +421,27 @@ const SpaceInvader = () => {
         }
     }, [lives]);
 
-    // 紙吹雪生成・アニメーション
+    // 紙吹雪アニメーション
     useEffect(() => {
         if (!celebration) return;
-        // 紙吹雪を100個生成
-        const colors = ['#ff69b4', '#ffd700', '#00bfff', '#7fff00', '#ff6347', '#ffffff'];
-        let confettiArr = Array.from({ length: 100 }, () => ({
-            x: Math.random() * canvasSize.width,
-            y: Math.random() * -canvasSize.height,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            dx: (Math.random() - 0.5) * 2,
-            dy: 2 + Math.random() * 2,
-            size: 6 + Math.random() * 8,
-        }));
-        setConfetti(confettiArr);
         let animId: number;
         const animate = () => {
-            confettiArr = confettiArr.map(c => ({
-                ...c,
-                x: c.x + c.dx,
-                y: c.y + c.dy,
-                dx: c.dx * 0.98 + (Math.random() - 0.5) * 0.1,
-                dy: c.dy * 0.99 + Math.random() * 0.05,
-            })).map(c => c.y > canvasSize.height ? { ...c, y: Math.random() * -20, x: Math.random() * canvasSize.width } : c);
-            setConfetti([...confettiArr]);
+            setConfetti(prev =>
+                prev.map(c => ({
+                    ...c,
+                    x: c.x + c.dx,
+                    y: c.y + c.dy,
+                    dx: c.dx * 0.98 + (Math.random() - 0.5) * 0.1,
+                    dy: c.dy * 0.99 + Math.random() * 0.05,
+                })).map(c =>
+                    c.y > canvasSize.height
+                        ? { ...c, y: Math.random() * -20, x: Math.random() * canvasSize.width }
+                        : c
+                )
+            );
             animId = requestAnimationFrame(animate);
         };
-        animate();
+        animId = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(animId);
     }, [celebration, canvasSize]);
 
@@ -522,7 +527,7 @@ const SpaceInvader = () => {
             ctx.font = 'bold 40px Arial';
             ctx.fillStyle = '#fff';
             ctx.textAlign = 'center';
-            ctx.fillText('Congratulations! All enemies defeated!', canvas.width / 2, canvas.height / 2);
+            ctx.fillText('🎉✨ Congratulations! All enemies defeated! 🎉👏', canvas.width / 2, canvas.height / 2);
             ctx.restore();
         }
     }, [player, invaders, bullets, score, explosions, enemyBullets, barriers, lives, hitCount, canvasSize, celebration, confetti]);
@@ -559,6 +564,7 @@ const SpaceInvader = () => {
     // ゲームリセット関数
     const resetGame = () => {
         window.location.reload();
+        setConfetti([]);
     };
 
     return (
@@ -578,7 +584,7 @@ const SpaceInvader = () => {
                         <div className="text-white text-2xl mb-4">Game Over! Score: {score}</div>
                     )}
                     {celebration && (
-                        <div className="text-white text-2xl mb-4">Congratulations! All enemies defeated!</div>
+                        <div className="text-white text-3xl mb-4">🎉✨ Congratulations! All enemies defeated! 🎉👏</div>
                     )}
                     <button
                         className="bg-green-600 text-white px-6 py-2 rounded text-lg font-bold hover:bg-green-700"
