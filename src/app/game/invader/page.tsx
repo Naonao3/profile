@@ -77,6 +77,7 @@ const SpaceInvader = () => {
     const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
     const [celebration, setCelebration] = useState(false);
     const [confetti, setConfetti] = useState<{ x: number, y: number, color: string, dx: number, dy: number, size: number }[]>([]);
+    const [gameKey, setGameKey] = useState(0);
 
     // 効果音・BGM用Audio
     const shotAudio = useRef<HTMLAudioElement | null>(null);
@@ -557,70 +558,11 @@ const SpaceInvader = () => {
 
     // ゲームリセット関数
     const resetGame = () => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        canvas.width = canvasSize.width;
-        canvas.height = canvasSize.height;
-        setPlayer({
-            x: canvas.width / 2 - 25,
-            y: Math.floor(canvas.height * 0.92),
-            width: 50,
-            height: 30,
-        });
-        // --- 敵の初期配置 ---
-        const isMobileNow = window.innerWidth < 768;
-        const ENEMY_ROWS = isMobileNow ? ENEMY_ROWS_MOBILE : ENEMY_ROWS_PC;
-        const ENEMY_COLS = isMobileNow ? ENEMY_COLS_MOBILE : ENEMY_COLS_PC;
-        const ENEMY_SIZE = isMobileNow ? ENEMY_SIZE_MOBILE : ENEMY_SIZE_PC;
-        const ENEMY_SPEED = isMobileNow
-            ? Math.max(canvas.width, canvas.height) * ENEMY_SPEED_MOBILE_RATIO
-            : ENEMY_SPEED_PC;
-        const initialInvaders: Invader[] = [];
-        const enemyTopMargin = Math.floor(canvas.height * 0.02);
-        const enemyRowHeight = Math.floor(canvas.height * 0.09);
-        const leftMargin = ENEMY_SIZE * 2;
-        const rightMargin = ENEMY_SIZE * 2;
-        for (let i = 0; i < ENEMY_ROWS; i++) {
-            for (let j = 0; j < ENEMY_COLS; j++) {
-                initialInvaders.push({
-                    x: leftMargin + j * (canvas.width - leftMargin - rightMargin - ENEMY_SIZE) / (ENEMY_COLS - 1),
-                    y: enemyTopMargin + i * enemyRowHeight,
-                    width: ENEMY_SIZE,
-                    height: ENEMY_SIZE,
-                    speed: ENEMY_SPEED,
-                    direction: 1,
-                });
-            }
-        }
-        setInvaders(initialInvaders);
-        // --- バリアの初期配置 ---
-        const barrierList: Barrier[] = [];
-        const barrierCount = 4;
-        const barrierWidth = isMobileNow ? 40 : 60;
-        const barrierSpacing = (canvas.width - barrierWidth * barrierCount) / (barrierCount + 1);
-        const barrierY = isMobileNow ? Math.floor(canvas.height * 0.65) : Math.floor(canvas.height * 0.75);
-        for (let i = 0; i < barrierCount; i++) {
-            barrierList.push({
-                x: barrierSpacing + i * (barrierWidth + barrierSpacing),
-                y: barrierY,
-                width: barrierWidth,
-                height: 30,
-                hp: 6,
-            });
-        }
-        setBarriers(barrierList);
-        setLives(LOGIC_LIVES);
-        setScore(0);
-        setBullets([]);
-        setEnemyBullets([]);
-        setExplosions([]);
-        setGameOver(false);
-        setHitCount(0);
-        setCelebration(false);
+        window.location.reload();
     };
 
     return (
-        <div className="min-h-screen bg-black flex flex-col items-center justify-center">
+        <div key={gameKey} className="min-h-screen bg-black flex flex-col items-center justify-center">
             <audio ref={shotAudio} src="/sounds/shot.mp3" preload="auto" />
             <audio ref={hitAudio} src="/sounds/hit.mp3" preload="auto" />
             <audio ref={bgmAudio} src="/sounds/background.mp3" preload="auto" autoPlay loop />
