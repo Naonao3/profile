@@ -77,7 +77,6 @@ const SpaceInvader = () => {
     const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
     const [celebration, setCelebration] = useState(false);
     const [confetti, setConfetti] = useState<{ x: number, y: number, color: string, dx: number, dy: number, size: number }[]>([]);
-    const [gameKey, setGameKey] = useState(0);
 
     // 効果音・BGM用Audio
     const shotAudio = useRef<HTMLAudioElement | null>(null);
@@ -568,7 +567,7 @@ const SpaceInvader = () => {
     };
 
     return (
-        <div key={gameKey} className="min-h-screen bg-black flex flex-col items-center justify-center">
+        <div className="min-h-screen bg-black flex flex-col items-center justify-center">
             <audio ref={shotAudio} src="/sounds/shot.mp3" preload="auto" />
             <audio ref={hitAudio} src="/sounds/hit.mp3" preload="auto" />
             <audio ref={bgmAudio} src="/sounds/background.mp3" preload="auto" autoPlay loop />
