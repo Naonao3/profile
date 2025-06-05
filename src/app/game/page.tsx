@@ -10,6 +10,12 @@ const games = [
         description: "Classic card game. Aim for 21 and beat the dealer.",
         image: "/images/blackjack.png",
     },
+    {
+        id: "invader",
+        title: "Space Invader",
+        description: "Classic arcade game. Defend Earth from alien invaders!",
+        image: "/images/invader.png",
+    },
     // Future games template
     // {
     //   id: "poker",
@@ -27,14 +33,14 @@ const GameListPage = () => {
                     Game List
                 </h1>
 
-                <div className="bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {games.map((game) => (
                         <Link
                             key={game.id}
                             href={`/game/${game.id}`}
-                            className="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                         >
-                            <div className="aspect-w-16 aspect-h-9 bg-gray-200">
+                            <div className="aspect-w-16 aspect-h-9 bg-gray-100">
                                 {/* If you have an image, display it here */}
                                 {/* <img
                   src={game.image}
