@@ -91,20 +91,21 @@ const SpaceInvader = () => {
 
     // BGM再生・停止（トップレベルに移動）
     useEffect(() => {
-        if (!bgmAudio.current) return;
-        bgmAudio.current.volume = 0.2; // 音量を20%に下げる
+        const audio = bgmAudio.current;
+        if (!audio) return;
+        audio.volume = 0.2; // 音量を20%に下げる
         if (!gameOver) {
-            bgmAudio.current.currentTime = 0;
-            bgmAudio.current.loop = true;
-            bgmAudio.current.play().catch(() => { });
+            audio.currentTime = 0;
+            audio.loop = true;
+            audio.play().catch(() => { });
         } else {
-            bgmAudio.current.pause();
-            bgmAudio.current.currentTime = 0;
+            audio.pause();
+            audio.currentTime = 0;
         }
         return () => {
-            if (bgmAudio.current) {
-                bgmAudio.current.pause();
-                bgmAudio.current.currentTime = 0;
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
             }
         };
     }, [gameOver]);
@@ -218,8 +219,8 @@ const SpaceInvader = () => {
 
         const gameLoop = setInterval(() => {
             // 1. プレイヤー弾とバリアの衝突判定
-            let newBarriers = [...barriers];
-            let newBullets = bullets
+            const newBarriers = [...barriers];
+            const newBullets = bullets
                 .map(bullet => ({ ...bullet, y: bullet.y - bullet.speed }))
                 .filter(bullet => bullet.y > 0);
             setBarriers(newBarriers.filter(b => b.hp > 0));
@@ -263,10 +264,11 @@ const SpaceInvader = () => {
                 ...invader,
                 x: invader.x + invader.speed * invader.direction,
             }));
+            const canvasWidth = canvasRef.current?.width ?? 800;
             const shouldChangeDirection = newInvaders.some(
                 invader =>
                     invader.x <= 0 ||
-                    invader.x + invader.width >= canvasRef.current?.width!
+                    invader.x + invader.width >= canvasWidth
             );
             if (shouldChangeDirection) {
                 newInvaders = newInvaders.map(invader => ({
@@ -288,7 +290,7 @@ const SpaceInvader = () => {
             setEnemyBullets(prev =>
                 prev
                     .map(bullet => ({ ...bullet, y: bullet.y + bullet.speed }))
-                    .filter(bullet => bullet.y < canvasRef.current!.height)
+                    .filter(bullet => bullet.y < (canvasRef.current?.height ?? 600))
             );
 
             // 敵の弾発射（ランダムな敵が一定確率で発射）
@@ -347,7 +349,7 @@ const SpaceInvader = () => {
 
             // 敵弾とバリアの衝突
             setEnemyBullets(prev => {
-                let newBarriers = [...barriers];
+                const newBarriers = [...barriers];
                 const filtered = prev.filter(bullet => {
                     for (let i = 0; i < newBarriers.length; i++) {
                         const b = newBarriers[i];
@@ -461,7 +463,7 @@ const SpaceInvader = () => {
         });
 
         // 敵
-        invaders.forEach((invader, idx) => {
+        invaders.forEach((invader) => {
             ctx.fillStyle = ENEMY_COLORS[Math.floor(invader.y / (invader.height * 2)) % ENEMY_COLORS.length];
             ctx.fillRect(invader.x, invader.y, invader.width, invader.height);
         });
